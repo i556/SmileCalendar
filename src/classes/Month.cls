@@ -5,6 +5,7 @@ public class Month {
     public Integer taskSize {get; set;}
     public Integer compTaskSize {get; set;}   
     public Boolean compCheckMonth {get; set;}
+    public static final string COMP_STATUS  = System.Label.COMP_STATUS;
     
     public List<Date> getValidDateRange() { 
         // return one date from the upper left, and one from the lower right
@@ -71,9 +72,9 @@ public class Month {
                         // add this event to this calendar date
                         //c.tasksToday.add(new TaskItem(e));
                         //1.今日以前にcompletedになっていない処理がある
-                        if( e.Status == 'completed' ) {
+                        if( e.Status == COMP_STATUS ) {
                         c.tasksCompleteToday.add(new TaskItem(e));
-                        } else if ( e.Status != 'completed' && e.ActivityDate < Date.today() ) {
+                        } else if ( e.Status != COMP_STATUS && e.ActivityDate < Date.today() ) {
                         c.tasksUncompleteToday.add(new TaskItem(e));
                         } else {
                         c.tasksToday.add(new TaskItem(e));
@@ -142,13 +143,6 @@ public class Month {
                 return '0'+theDate.day(); 
             return String.valueof( theDate.day()); 
         }
-        /*
-        public Boolean  getHasEvent() { 
-            if ( eventsToday.size() > 0 ) 
-                return true; 
-            return false; 
-        }
-        */
 
         //Todoの件数
         public Boolean  getHasTask() { 
@@ -158,7 +152,7 @@ public class Month {
         }
 
         public Boolean  getHasCompleteTask() { 
-            if ( tasksCompleteToday.size() > 0 ) 
+            if ( tasksCompleteToday.size() > 0 && tasksToday.size() == 0 && tasksCompleteToday.size() > 0 && tasksUncompleteToday.size() == 0) 
                 return true; 
             return false; 
         }
