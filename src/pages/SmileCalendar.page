@@ -18,7 +18,7 @@
                        <span class="calTitle"> {!month.monthname} {!month.yearname}</span>
 
             <apex:outputPanel id="allComp" rendered="true" >
-            <apex:outputPanel rendered="{!checkCompPage}" layout="block" style="text-align:center;">
+            <apex:outputPanel rendered="{!isAllCompleted}" layout="block" style="text-align:center;">
             <apex:image url="{!URLFOR($Resource.TaskCal, 'TaskCal/event_cracker02.png')}" width="50" height="50" />
             <apex:image url="{!URLFOR($Resource.TaskCal, 'TaskCal/img05.png')}" width="50" height="50" />
             <apex:image url="{!URLFOR($Resource.TaskCal, 'TaskCal/event_cracker01.png')}" width="50" height="50" />
@@ -50,7 +50,7 @@
                                 <a class="calActive" onClick="jump()" title="Day View - {!day.date}">{!day.dayofmonth2}</a><br />
 
                                 <apex:outputPanel rendered="{!day.hasTask}"><a class="calActive" onClick="jump()" title="Day View - {!day.date}"><apex:image url="{!URLFOR($Resource.TaskCal, 'TaskCal/img03.png')}" width="30" height="30" /></a></apex:outputPanel>
-                                <apex:outputPanel rendered="{!day.hasUncompleteTask}"><a class="calActive" onClick="jump()" title="Day View - {!day.date}"><apex:image url="{!URLFOR($Resource.TaskCal, 'TaskCal/img11.png')}" width="30" height="30" /></a></apex:outputPanel>
+                                <apex:outputPanel rendered="{!day.hasIncompleteTask}"><a class="calActive" onClick="jump()" title="Day View - {!day.date}"><apex:image url="{!URLFOR($Resource.TaskCal, 'TaskCal/img11.png')}" width="30" height="30" /></a></apex:outputPanel>
                                 <apex:outputPanel rendered="{!day.hasCompleteTask}"><a class="calActive" onClick="jump()" title="Day View - {!day.date}"><apex:image url="{!URLFOR($Resource.TaskCal, 'TaskCal/img01.png')}" width="30" height="30" /></a></apex:outputPanel>
                                 </td>
                             </apex:repeat>

@@ -2,12 +2,12 @@ public class repeatCon {
 
   public void next() { 
     addMonth(1);
-    checkComp = month.getAllCompleted();
+    isAllCompleted = month.getCompletedCheck();
   }
 
   public void prev() { 
     addMonth(-1); 
-    checkComp = month.getAllCompleted();
+    isAllCompleted = month.getCompletedCheck();
   }
 
   public repeatCon() {
@@ -24,7 +24,7 @@ public class repeatCon {
           d = Date.newInstance(d.year(),mi,d.day());
         }
    }
-   // and year as yr=2008
+   
    if (y_param != null) { 
         Integer yr = Integer.valueOf(y_param); 
         d = Date.newInstance(yr, d.month(), d.day());
@@ -46,7 +46,7 @@ public class repeatCon {
     month = new Month(d);  
     system.assert(month != null); 
 
-    Date[] da = month.getValidDateRange();  // gather events that fall in this month
+    Date[] da = month.getValidDateRange(); 
 
     tasks = [ select id,subject,description,activitydate,status
         from Task 
@@ -55,7 +55,7 @@ public class repeatCon {
 
     compTasks = [ select id,subject,description,activitydate,status
         from Task 
-        where activitydate >= :da[0] AND activityDate <= :da[1] AND status = 'completed'
+        where activitydate >= :da[0] AND activityDate <= :da[1] AND status = :COMP_STATUS
         order by activitydate];
 
     month.setAllCompletedCheck(tasks.size(),compTasks.size() );
@@ -70,9 +70,10 @@ public class repeatCon {
     d = d.addMonths(val);
     setMonth(d);
   }
-  public Boolean checkComp {get; set;}
-  public Integer test {get; set;}
+  
+  public Boolean isAllCompleted  {get; set;}
   private List<Task> tasks;
   private List<Task> compTasks;
   private Month month;
+  public static final string COMP_STATUS  = System.Label.COMP_STATUS;
 }
