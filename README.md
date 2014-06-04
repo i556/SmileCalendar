@@ -22,5 +22,5 @@ Usage
 * カスタム表示ラベルの設定
  * Todoが完了となるステータスの値を設定できます。デフォルトはcompletedです。
 
-※設定の詳細は以下のwiki/Settingsへ
+※設定の詳細は以下のwiki/Settingsへ  
 https://github.com/i556/SmileCalendar/wiki/Settings
